@@ -1,7 +1,6 @@
 require './lib/task'
 require './lib/list'
 
-# @lists = []
 @list = []
 
 def main_menu
@@ -10,7 +9,7 @@ def main_menu
     puts "Press '+l' to add a list"
     puts "Press 's' to show all lists"
     puts "Press 'a' to add a task"
-    puts "Press 'd' to delete a task"
+    # puts "Press 'd' to delete a task"
     puts "Press 'l' to list all tasks"
     puts "Press 'x' to exit."
     main_choice = gets.chomp
@@ -21,8 +20,8 @@ def main_menu
       show_lists
     elsif main_choice == 'a'
       add_task
-    elsif main_choice == 'd'
-      delete_task
+    # elsif main_choice == 'd'
+    #   delete_task
     elsif main_choice == 'l'
       list_tasks
     elsif main_choice == 'x'
@@ -47,7 +46,7 @@ def show_lists
   puts "Here are all of your lists:"
   List.all.each_with_index do |list, index|
     # lists = List.all.index(list)
-    puts "#{index+1}. " + ": " + list.name
+    puts "#{index+1}. " + list.name
   end
 end
 
@@ -58,16 +57,45 @@ def add_task
   puts "Task added! \n\n"
 end
 
-# def delete_task
-
-# end
-
 def list_tasks
   puts "Here are all of your tasks:"
-  @list.each_with_index do |task,index|
+  @list.each_with_index do |task, index|
     puts "#{index+1}. " + task.task_descrip
+    @task_number = "#{index+1}. "
   end
+  puts "Press 'r' to remove a task"
+  puts "Press 'x' to return to the main menu"
 
+  list_tasks_response = gets.chomp
+  @list.each do |task|
+    if list_tasks_response == @task_number
+      @current_task = task
+    elsif list_tasks_response == 'r'
+      delete_task
+    elsif list_tasks_response == 'x'
+      main_menu
+    else
+      puts "Invalid entry, try again!"
+    end
+  end
+end
+
+def delete_task
+  puts "It seems you would like to delete a word. Here are your tasks:"
+
+  @list.each_with_index do |task, index|
+    puts "#{index+1}" + " " + task.task_descrip
+    @task_number = "#{index+1}"
+  end
+  puts "Please choose the number of the task to delete:"
+  input_delete_task = gets.chomp
+  @list.each do |task|
+    if input_delete_task == @task_number
+      @current_task = task
+      @list.delete_at(@tast_number.to_i - 1)
+      puts "Task gone, gone GONE"
+    end
+  end
 end
 
 
