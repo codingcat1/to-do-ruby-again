@@ -1,7 +1,11 @@
 class List
-  attr_accessor :tasks, :lists
+
+  attr_accessor :tasks, :name
+
   @@lists = []
-  def initialize(tasks)
+
+  def initialize(name)
+    @name = name
     @tasks = []
   end
 

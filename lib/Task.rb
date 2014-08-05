@@ -1,8 +1,8 @@
 class Task
-  attr_accessor :taskd
+  attr_accessor :task_descrip
 
-  def initialize(taskd)
-    @taskd = taskd
+  def initialize(task_descrip)
+    @task_descrip = task_descrip
   end
 
 end
