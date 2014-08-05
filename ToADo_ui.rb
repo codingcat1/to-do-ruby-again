@@ -1,6 +1,7 @@
 require './lib/task'
 require './lib/list'
 
+# @lists = []
 @list = []
 
 def main_menu
@@ -30,7 +31,9 @@ end
 def add_list
   puts "Please add a list"
   input_added_list = gets.chomp
-  @
+  new_list = List.new(input_added_list)
+  new_list.save
+  puts "New todo list created! Try something else #yolo \n\n"
 end
 
 
@@ -44,9 +47,8 @@ end
 
 def list_tasks
   puts "Here are all of your tasks:"
-  @list.each do |task|
-    puts task.taskd
-  puts @tasks
+  @list.each_with_index do |task,index|
+    puts "#{index+1}. " + task.taskd
   end
   puts "\n"
 end
