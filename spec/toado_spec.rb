@@ -15,9 +15,10 @@ describe List do
     test_list.tasks.should eq [test_task]
   end
 
-  it "starts out with an empty list of lists" do
-    test_list = List.new "School stuff"
-    test_list.lists.should eq []
+  it "start name the current list" do
+    test_list = List.new "Grocery List"
+    test_list.save
+    List.all.should eq [test_list]
   end
 
 end

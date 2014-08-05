@@ -26,6 +26,13 @@ def main_menu
   end
 end
 
+###
+def add_list
+  puts "Please add a list"
+  input_added_list = gets.chomp
+  @
+end
+
 
 def add_task
   puts "Please add a task:"
