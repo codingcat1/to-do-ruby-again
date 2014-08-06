@@ -13,7 +13,6 @@ def main_menu
     puts "Press 'l' to list all tasks"
     puts "Press 'x' to exit."
     main_choice = gets.chomp
-
     if main_choice == '+l'
       add_list
     elsif main_choice == 's'
@@ -53,14 +52,28 @@ end
 def add_task
   puts "Please add a task:"
   input_added_task = gets.chomp
-  @list << Task.new(input_added_task)
-  puts "Task added! \n\n"
+  puts "Task added! Now add a priority from 1 (low) to 5 (high)"
+  priority_decision = gets.chomp
+  if priority_decision == "1"
+    puts "Ok, low priority"
+  elsif priority_decision == "2"
+    puts "Ok, low priority"
+  elsif priority_decision == "3"
+    puts "Ok, medium priority"
+  elsif priority_decision == "4"
+    puts "Ok, medium-high priority"
+  elsif priority_decision == "5"
+    puts "Ok, high priority"
+  else
+    puts "Error, please try again."
+  end
+    @list << Task.new(input_added_task, priority_decision)
 end
 
 def list_tasks
   puts "Here are all of your tasks:"
   @list.each_with_index do |task, index|
-    puts "#{index+1}. " + task.task_descrip
+    puts "#{index+1}. " + task.task_descrip + " priority: " + task.task_priority
     @task_number = "#{index+1}. "
   end
   puts "Press 'r' to remove a task"
